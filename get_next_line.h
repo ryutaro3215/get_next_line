@@ -6,7 +6,7 @@
 /*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:48:30 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/10/23 17:05:32 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/10/26 21:05:24 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_read_to_left_str(int fd, char *left_str);
-char	*ft_strchr(char )
 
 #endif
