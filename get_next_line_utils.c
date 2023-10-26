@@ -6,13 +6,8 @@
 /*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:07 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/10/21 21:14:39 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:20:30 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*ft_strchr(char	*s, char c)
-{
-	w
-}
