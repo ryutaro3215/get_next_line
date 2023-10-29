@@ -3,44 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
+/*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:14 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/10/28 23:37:34 by ryutaro3205      ###   ########.fr       */
+/*   Updated: 2023/10/29 18:19:14 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read(int fd, char *hold_str);
-char	*ft_get_line(char *hold_str);
-char	*ft_hold(char *hold_str);
-
 char	*get_next_line(int fd)
 {
-	char		*result_str;
-	static char	*hold_str;
+	static char	*keep_string;
+	char		*result_string;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	hold_str = ft_read(fd, hold_str);
-	if (!hold_str)
+	keep_string = ft_read(fd, keep_string);
+	if (!keep_string)
 		return (NULL);
-	result_str = ft_get_line(hold_str);
-	hold_str = ft_hold(hold_str);
-	return (result_str);
+	result_string = ft_get_line(keep_string);
+	keep_string = ft_hold(keep_string);
+	return (result_string);
 }
 
-char	*ft_read(int fd, char *hold_str)
+char	*ft_read(int fd, char *keep_string)
 {
 	char	*buffer;
 	int		read_bytes;
 
-	read_bytes = 1;
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (buffer == NULL)
 		return (NULL);
-	while (!ft_strchr(hold_str, '\n') && read_bytes != 0)
+	while (!ft_strchr(keep_string, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes == -1)
@@ -49,61 +44,60 @@ char	*ft_read(int fd, char *hold_str)
 			return (NULL);
 		}
 		buffer[read_bytes] = '\0';
-		hold_str = ft_strjoin(hold_str, buffer);
+		keep_string = ft_strjoin(keep_string, buffer);
 	}
 	free(buffer);
-	return (hold_str);
+	return (keep_string);
 }
 
-char	*ft_hold(char *hold_str)
+char	*ft_get_line(char *keep_string)
+{
+	int		i;
+	char	*line_string;
+
+	i = 0;
+	if (!keep_string)
+		return (NULL);
+	while (keep_string[i] != '\0' && keep_string[i] != '\n')
+		i++;
+	line_string = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line_string)
+		return (NULL);
+	i = 0;
+	while (keep_string[i] != '\0' && keep_string[i] != '\n')
+	{
+		line_string[i] = keep_string[i];
+		i++;
+	}
+	if (keep_string[i] == '\n')
+	{
+		line_string[i] = keep_string[i];
+		i++;
+	}
+	line_string = '\0';
+	return (line_string);
+}
+
+char	*ft_keep_str(char *keep_string)
 {
 	int	i;
 	int	j;
 	char	*after_n;
 
-	i = 0;
-	j = 0;
-	while (hold_str[i] != '\0' && hold_str[i] != '\n')
-		i++;
-	if (hold_str == NULL)
+	if (!keep_string)
 	{
-		free(hold_str);
+		free(keep_string);
 		return (NULL);
 	}
-	after_n = (char *)malloc(sizeof(char) * (ft_strlen(hold_str) - i + 1));
+	while (keep_string[i] != '\0' && keep_string[i] != '\n')
+		i++;
+	after_n = malloc(sizeof(char) * (ft_strlen(keep_string) - i + 1));
 	if (!after_n)
 		return (NULL);
 	i++;
-	while (hold_str[i] != '\0')
-		after_n[j++] = hold_str[i++];
+	while (keep_string[i] != '\0')
+		after_n[j++] = keep_string[i++];
 	after_n[j] = '\0';
-	free(hold_str);
+	free(keep_string);
 	return (after_n);
-}
-
-char	*ft_get_line(char *hold_str)
-{
-	int		i;
-	char	*line_str;
-
-	i = 0;
-	if (!hold_str)
-		return (NULL);
-	while (hold_str[i] != '\0' && hold_str[i] != '\n')
-		i++;
-	line_str = (char *)malloc(sizeof(char) * (i + 2));
-	if (!line_str)
-		return (NULL);
-	while (hold_str[i] != '\0'&& hold_str[i] != '\n')
-	{
-		line_str[i] = hold_str[i];
-		i++;
-	}
-	if (hold_str[i] == '\n')
-	{
-		line_str[i] = hold_str[i];
-		i++;
-	}
-	line_str[i] = '\0';
-	return (line_str);
 }

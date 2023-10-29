@@ -3,63 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
+/*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:07 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/10/29 11:48:59 by ryutaro3205      ###   ########.fr       */
+/*   Updated: 2023/10/29 16:41:07 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+size_t	ft_strlen(char *str)
 {
-	unsigned char	w;
+	size_t	len;
 
-	w = (unsigned char)c;
-	while (*s != '\0')
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
+}
+
+char	*ft_strchr(char *str, int c)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return (NULL);
+	if (c == '\0')
+		return ((char *)&str[ft_strlen(str)]);
+	while (str[i] != '\0')
 	{
-		if (*s == w)
-			return ((char *)s);
-		s++;
+		if (str[i] == (char)c)
+			return ((char *)&str[i]);
+		i++;
 	}
-	if (w == '\0')
-		return ((char *)s);
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *s)
+char	*ft_strjoin(char *str1, char *str2)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*concat_str;
-	int		j;
 	int		i;
-	int		s1_len;
-	int		s2_len;
+	int		j;
+	char	*result_str;
 
+	i = -1;
 	j = 0;
-	i = 0;
-	if (!s1 || !s2)
+	if (!str1)
+		str1 = "";
+	if (!str1 || !str2)
 		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	concat_str = (char *)malloc(s1_len + s2_len + 1);
-	if (concat_str == NULL)
+	result_str = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
+	if (!result_str)
 		return (NULL);
-	while (s1[i] != '\0')
-		concat_str[j++] = s1[i++];
-	i = 0;
-	while (s2[i] != '\0')
-		concat_str[j++] = s2[i++];
-	concat_str[j] = '\0';
-	return (concat_str);
+	while (str1[++i] != '\0')
+		result_str[i] = str1[i];
+	while (str2[j] != '\0')
+		result_str[i++] = str2[j++];
+	result_str[i] = '\0';
+	return (result_str);
 }
