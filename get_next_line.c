@@ -6,11 +6,7 @@
 /*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:14 by rmatsuba          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/10/26 21:14:50 by rmatsuba         ###   ########.fr       */
-=======
 /*   Updated: 2023/10/28 23:37:34 by ryutaro3205      ###   ########.fr       */
->>>>>>> 36362d5dffe0c9f4a7008067239673eee6f739b9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +18,6 @@ char	*ft_hold(char *hold_str);
 
 char	*get_next_line(int fd)
 {
-<<<<<<< HEAD
-	int		read_len;
-	char	*buffer;
-	static 
-
-	if (fd <= 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	buffer = malloc(BUFFER_SIZE * sizeof(char));
-	if (buffer == NULL)
-		return (NULL);
-	read_len = read(fd, buffer, BUFFER_SIZE);
-
-
-}
-=======
 	char		*result_str;
 	static char	*hold_str;
 
@@ -126,4 +107,3 @@ char	*ft_get_line(char *hold_str)
 	line_str[i] = '\0';
 	return (line_str);
 }
->>>>>>> 36362d5dffe0c9f4a7008067239673eee6f739b9
