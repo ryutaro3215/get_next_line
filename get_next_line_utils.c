@@ -6,11 +6,17 @@
 /*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:07 by rmatsuba          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/10/26 20:20:30 by rmatsuba         ###   ########.fr       */
+=======
 /*   Updated: 2023/10/28 23:34:25 by ryutaro3205      ###   ########.fr       */
+>>>>>>> 36362d5dffe0c9f4a7008067239673eee6f739b9
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+<<<<<<< HEAD
+=======
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -63,3 +69,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	concat_str[j] = '\0';
 	return (concat_str);
 }
+>>>>>>> 36362d5dffe0c9f4a7008067239673eee6f739b9
