@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:07 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/10/29 16:41:07 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/10/30 00:28:31 by ryutaro3205      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ char	*ft_strjoin(char *str1, char *str2)
 	while (str2[j] != '\0')
 		result_str[i++] = str2[j++];
 	result_str[i] = '\0';
+	free(str1);
 	return (result_str);
 }
