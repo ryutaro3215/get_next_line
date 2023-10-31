@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 19:44:14 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/10/31 13:53:53 by rmatsuba         ###   ########.fr       */
+/*   Created: 2023/10/31 13:55:08 by rmatsuba          #+#    #+#             */
+/*   Updated: 2023/10/31 14:06:25 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*keep_string;
+	static char	*keep_string[256];
 	char		*result_string;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
 		return (NULL);
-	keep_string = ft_read(fd, keep_string);
-	if (!keep_string)
+	keep_string[fd] = ft_read(fd, keep_string[fd]);
+	if (!keep_string[fd])
 		return (NULL);
-	result_string = ft_get_line(keep_string);
-	keep_string = ft_keep_str(keep_string);
+	result_string = ft_get_line(keep_string[fd]);
+	keep_string[fd] = ft_keep_str(keep_string[fd]);
 	return (result_string);
 }
 
@@ -104,16 +104,3 @@ char	*ft_keep_str(char *keep_string)
 	free(keep_string);
 	return (after_n);
 }
-
-// int	main(void)
-// {
-// 	char	*str;
-// 	int	fd;
-// 	int	counter;
-
-// 	counter = 0;
-// 	fd = open("sample.txt", O_RDONLY);
-// 	str = get_next_line(fd);
-// 	printf("result : %s", str);
-// 	return (0);
-// }
