@@ -41,6 +41,7 @@ char	*ft_read(int fd, char *keep_string)
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
+			free(keep_string);
 			free(buffer);
 			return (NULL);
 		}
