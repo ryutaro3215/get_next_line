@@ -6,7 +6,7 @@
 /*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:55:08 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/10/31 14:06:25 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:56:49 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*keep_string[256];
+	static char	*keep_string[257];
 	char		*result_string;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
@@ -23,7 +23,7 @@ char	*get_next_line(int fd)
 	if (!keep_string[fd])
 		return (NULL);
 	result_string = ft_get_line(keep_string[fd]);
-	keep_string[fd] = ft_keep_str(keep_string[fd]);
+	keep_string[fd] = ft_keep_str(keep_string[fd], result_string);
 	return (result_string);
 }
 
@@ -35,15 +35,14 @@ char	*ft_read(int fd, char *keep_string)
 	read_bytes = 1;
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
-		return (NULL);
+		return (ft_free(keep_string));
 	while (!ft_strchr(keep_string, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
-			free(keep_string);
 			free(buffer);
-			return (NULL);
+			return (ft_free(keep_string));
 		}
 		buffer[read_bytes] = '\0';
 		keep_string = ft_strjoin(keep_string, buffer);
@@ -62,7 +61,10 @@ char	*ft_get_line(char *keep_string)
 		return (NULL);
 	while (keep_string[i] && keep_string[i] != '\n')
 		i++;
-	line_string = (char *)malloc(sizeof(char) * (i + 2));
+	if (keep_string[i] == '\0')
+		line_string = (char *)malloc(sizeof(char) * (i + 1));
+	else
+		line_string = (char *)malloc(sizeof(char) * (i + 2));
 	if (!line_string)
 		return (NULL);
 	i = 0;
@@ -72,15 +74,12 @@ char	*ft_get_line(char *keep_string)
 		i++;
 	}
 	if (keep_string[i] == '\n')
-	{
 		line_string[i] = keep_string[i];
-		i++;
-	}
-	line_string[i] = '\0';
+	line_string[++i] = '\0';
 	return (line_string);
 }
 
-char	*ft_keep_str(char *keep_string)
+char	*ft_keep_str(char *keep_string, char *result_string)
 {
 	int		i;
 	int		j;
@@ -88,16 +87,15 @@ char	*ft_keep_str(char *keep_string)
 
 	i = 0;
 	j = 0;
+	if (!result_string)
+		return (ft_free(keep_string));
 	while (keep_string[i] && keep_string[i] != '\n')
 		i++;
 	if (!keep_string[i])
-	{
-		free(keep_string);
-		return (NULL);
-	}
+		return (ft_free(keep_string));
 	after_n = malloc(sizeof(char) * (ft_strlen(keep_string) - i + 1));
 	if (!after_n)
-		return (NULL);
+		return (ft_free(keep_string));
 	i++;
 	while (keep_string[i])
 		after_n[j++] = keep_string[i++];
@@ -105,3 +103,27 @@ char	*ft_keep_str(char *keep_string)
 	free(keep_string);
 	return (after_n);
 }
+
+// int	main(void)
+// {
+// 	char	*str;
+// 	int	fd;
+// 	int	counter;
+
+// 	counter = 0;
+// 	fd = open("result.txt", O_RDONLY);
+// 	str = get_next_line(fd);
+// 	while (str)
+// 	{
+// 		printf("%s", str);
+// 		free(str);
+// 		str = get_next_line(fd);
+// 	}
+// 	// printf("%s", str);
+// 	return (0);
+// }
+// #include <libc.h>
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q a.out");
+// }
