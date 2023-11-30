@@ -6,7 +6,7 @@
 /*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:48:30 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/11/28 15:28:22 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:28:15 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
+#  define BUFFER_SIZE 1024
 # endif
 
 char	*get_next_line(int fd);

@@ -6,7 +6,7 @@
 /*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:55:08 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/11/28 15:56:49 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:44:24 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,10 @@ char	*ft_keep_str(char *keep_string, char *result_string)
 		return (ft_free(keep_string));
 	after_n = malloc(sizeof(char) * (ft_strlen(keep_string) - i + 1));
 	if (!after_n)
+	{
+		free(result_string);
 		return (ft_free(keep_string));
+	}
 	i++;
 	while (keep_string[i])
 		after_n[j++] = keep_string[i++];
@@ -108,10 +111,12 @@ char	*ft_keep_str(char *keep_string, char *result_string)
 // {
 // 	char	*str;
 // 	int	fd;
+// 	int	fd2;
 // 	int	counter;
 
 // 	counter = 0;
 // 	fd = open("result.txt", O_RDONLY);
+// 	fd2 = open("sample.txt", O_RDONLY);
 // 	str = get_next_line(fd);
 // 	while (str)
 // 	{

@@ -6,7 +6,7 @@
 /*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:14 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/11/28 15:47:15 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:41:42 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ char	*ft_keep_str(char *keep_string, char *result_string)
 		return (ft_free(keep_string));
 	after_n = malloc(sizeof(char) * (ft_strlen(keep_string) - i + 1));
 	if (!after_n)
+	{
+		free(result_string);
 		return (ft_free(keep_string));
+	}
 	i++;
 	while (keep_string[i])
 		after_n[j++] = keep_string[i++];
@@ -106,20 +109,41 @@ char	*get_next_line(int fd)
 
 // int	main(void)
 // {
-// 	char	*str;
-// 	int	fd;
+// 	char	*str1;
+// 	// char	*str2;
+// 	int	fd1;
+// 	// int	fd2;
 // 	int	counter;
 
 // 	counter = 0;
-// 	fd = open("sample.txt", O_RDONLY);
-// 	str = get_next_line(fd);
-// 	while (str)
+// 	fd1 = open("sample.txt", O_RDONLY);
+// 	// fd2 = open("test.txt", O_RDONLY);
+// 	str1 = get_next_line(fd1);
+// 	// str2 = get_next_line(fd2);
+// 	while (str1)
 // 	{
-// 		printf("%s", str);
-// 		free(str);
-// 		str = get_next_line(fd);
+// 		printf("%s", str1);
+// 		free(str1);
+// 		str1 = get_next_line(fd1);
+// 		if (str1 == NULL)
+// 		{
+// 			printf("%s", str1);
+// 			break ;
+// 		}
 // 	}
-// 	// printf("%s", str);
+// 	// while (str2)
+// 	// {
+// 	// 	printf("%s", str2);
+// 	// 	free(str2);
+// 	// 	str2 = get_next_line(fd2);
+// 	// 	if (str2 == NULL)
+// 	// 		{
+// 	// 			printf("%s", str2);
+// 	// 			break ;
+// 	// 		}
+// 	// }
+// 	// printf("%s", str1);
+// 	// printf("%s", str2);
 // 	return (0);
 // }
 // #include <libc.h>
