@@ -6,7 +6,7 @@
 /*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:14 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/11/30 19:41:42 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:28:05 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_read(int fd, char *keep_string)
 	int		read_bytes;
 
 	read_bytes = 1;
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = (char *)malloc(sizeof(char) * ((long)BUFFER_SIZE + 1));
 	if (!buffer)
 		return (ft_free(keep_string));
 	while (!ft_strchr(keep_string, '\n') && read_bytes != 0)
@@ -31,6 +31,8 @@ char	*ft_read(int fd, char *keep_string)
 		}
 		buffer[read_bytes] = '\0';
 		keep_string = ft_strjoin(keep_string, buffer);
+		if (!keep_string)
+			return (ft_free(buffer));
 	}
 	free(buffer);
 	return (keep_string);
