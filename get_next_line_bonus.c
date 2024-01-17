@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:55:08 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/12/05 14:28:40 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2024/01/17 19:56:05 by ryutaro3205      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,29 +108,3 @@ char	*ft_keep_str(char *keep_string, char *result_string)
 	free(keep_string);
 	return (after_n);
 }
-
-// int	main(void)
-// {
-// 	char	*str;
-// 	int	fd;
-// 	int	fd2;
-// 	int	counter;
-
-// 	counter = 0;
-// 	fd = open("result.txt", O_RDONLY);
-// 	fd2 = open("sample.txt", O_RDONLY);
-// 	str = get_next_line(fd);
-// 	while (str)
-// 	{
-// 		printf("%s", str);
-// 		free(str);
-// 		str = get_next_line(fd);
-// 	}
-// 	// printf("%s", str);
-// 	return (0);
-// }
-// #include <libc.h>
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q a.out");
-// }

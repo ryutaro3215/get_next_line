@@ -6,11 +6,7 @@
 /*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:14 by rmatsuba          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/11/23 19:22:27 by ryutaro3205      ###   ########.fr       */
-=======
-/*   Updated: 2023/12/05 14:28:05 by rmatsuba         ###   ########.fr       */
->>>>>>> 1903a5d19fa3fdb8697e617fb9d28b4b75be54a7
+/*   Updated: 2024/01/17 19:55:50 by ryutaro3205      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +94,6 @@ char	*ft_keep_str(char *keep_string, char *result_string)
 	return (after_n);
 }
 
-<<<<<<< HEAD
-int	main(void)
-{
-	char	*str;
-	int	fd;
-
-	fd = open("sample.txt", O_RDONLY);
-	str = get_next_line(fd);
-	printf("result : %s", str);
-	return (0);
-}
-=======
 char	*get_next_line(int fd)
 {
 	static char	*keep_string;
@@ -124,49 +108,3 @@ char	*get_next_line(int fd)
 	keep_string = ft_keep_str(keep_string, result_string);
 	return (result_string);
 }
-
-// int	main(void)
-// {
-// 	char	*str1;
-// 	// char	*str2;
-// 	int	fd1;
-// 	// int	fd2;
-// 	int	counter;
-
-// 	counter = 0;
-// 	fd1 = open("sample.txt", O_RDONLY);
-// 	// fd2 = open("test.txt", O_RDONLY);
-// 	str1 = get_next_line(fd1);
-// 	// str2 = get_next_line(fd2);
-// 	while (str1)
-// 	{
-// 		printf("%s", str1);
-// 		free(str1);
-// 		str1 = get_next_line(fd1);
-// 		if (str1 == NULL)
-// 		{
-// 			printf("%s", str1);
-// 			break ;
-// 		}
-// 	}
-// 	// while (str2)
-// 	// {
-// 	// 	printf("%s", str2);
-// 	// 	free(str2);
-// 	// 	str2 = get_next_line(fd2);
-// 	// 	if (str2 == NULL)
-// 	// 		{
-// 	// 			printf("%s", str2);
-// 	// 			break ;
-// 	// 		}
-// 	// }
-// 	// printf("%s", str1);
-// 	// printf("%s", str2);
-// 	return (0);
-// }
-// #include <libc.h>
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q a.out");
-// }
->>>>>>> 1903a5d19fa3fdb8697e617fb9d28b4b75be54a7
