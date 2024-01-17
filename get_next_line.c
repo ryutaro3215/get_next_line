@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:14 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/10/31 13:53:53 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:22:27 by ryutaro3205      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,13 @@ char	*ft_keep_str(char *keep_string)
 	return (after_n);
 }
 
-// int	main(void)
-// {
-// 	char	*str;
-// 	int	fd;
-// 	int	counter;
+int	main(void)
+{
+	char	*str;
+	int	fd;
 
-// 	counter = 0;
-// 	fd = open("sample.txt", O_RDONLY);
-// 	str = get_next_line(fd);
-// 	printf("result : %s", str);
-// 	return (0);
-// }
+	fd = open("sample.txt", O_RDONLY);
+	str = get_next_line(fd);
+	printf("result : %s", str);
+	return (0);
+}
