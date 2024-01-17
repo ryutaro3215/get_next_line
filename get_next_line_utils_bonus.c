@@ -6,7 +6,7 @@
 /*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:55:55 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/10/31 13:58:10 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2023/12/02 21:49:49 by rmatsuba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char	*ft_strjoin(char *str1, char *str2)
 	if (!str1)
 	{
 		str1 = (char *)malloc(1 * sizeof(char));
+		if (!str1)
+			return (NULL);
 		str1[0] = '\0';
 	}
 	if (!str1 || !str2)
@@ -67,4 +69,10 @@ char	*ft_strjoin(char *str1, char *str2)
 	result_str[i] = '\0';
 	free(str1);
 	return (result_str);
+}
+
+char	*ft_free(char *str)
+{
+	free(str);
+	return (NULL);
 }
