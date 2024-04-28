@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmatsuba <rmatsuba@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:48:30 by rmatsuba          #+#    #+#             */
-/*   Updated: 2023/12/02 21:53:54 by rmatsuba         ###   ########.fr       */
+/*   Updated: 2024/04/29 01:06:56 by ryutaro3205      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_free(char *str);
+char	*check_end(char *keep_string, int i);
 
 #endif

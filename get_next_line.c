@@ -6,7 +6,7 @@
 /*   By: ryutaro320515 <ryutaro320515@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:44:14 by rmatsuba          #+#    #+#             */
-/*   Updated: 2024/01/17 19:55:50 by ryutaro3205      ###   ########.fr       */
+/*   Updated: 2024/04/29 01:08:02 by ryutaro3205      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ char	*ft_get_line(char *keep_string)
 		return (NULL);
 	while (keep_string[i] && keep_string[i] != '\n')
 		i++;
-	if (keep_string[i] == '\0')
-		line_string = (char *)malloc(sizeof(char) * (i + 1));
-	else
-		line_string = (char *)malloc(sizeof(char) * (i + 2));
+	keep_string = check_end(keep_string, i);
 	if (!line_string)
 		return (NULL);
 	i = 0;
@@ -61,8 +58,11 @@ char	*ft_get_line(char *keep_string)
 		i++;
 	}
 	if (keep_string[i] == '\n')
+	{
 		line_string[i] = keep_string[i];
-	line_string[++i] = '\0';
+		i++;
+	}
+	line_string[i] = '\0';
 	return (line_string);
 }
 
